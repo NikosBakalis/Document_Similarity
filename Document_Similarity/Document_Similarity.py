@@ -121,7 +121,7 @@ for i in range(len(digitChunks)):
 if N == 2:
     print("Final result:")
     print(resultList)
-    print("The similarity between document No: 1 and document No: 2 is: ", finalList[0] * 100, "%")
+    print("The similarity between Document No: 1 and Document No: 2 is: ", round((finalList[0] * 100), 2), "%")
 else:
     print("Final result:")
     resultChunks = [resultList[x:x+3] for x in range(0, len(resultList), 3)]
@@ -131,27 +131,28 @@ else:
     for allResults in range(len(resultChunks)):
         for allNumbers in range(2, len(resultChunks[allResults]), 3):
             print(resultChunks[allResults][allNumbers])
-            print("The similarity between document No:", resultChunks[allResults][0], "and document No:",
+            print("The similarity between Document No:", resultChunks[allResults][0], "and Document No:",
                   resultChunks[allResults][1], "is:", round((resultChunks[allResults][2] * 100), 2), "%")
 
-K = int(input("Find the top similar documents: "))
-while K > math.factorial(N) / (math.factorial(2) * math.factorial(N - 2)):
-    K = int(input("Find the top similar documents: "))
+    K = int(input("\n\nFind the top similar documents: "))
+    while K > math.factorial(N) / (math.factorial(2) * math.factorial(N - 2)):
+        K = int(input("Find the top similar documents: "))
 
-for i in range(K):
-    for allResults in range(len(finalList)):
-        print(finalList[allResults])
-        if tempMax < finalList[allResults]:
-            tempMax = finalList[allResults]
-    finalList.remove(tempMax)
-    topList.append(tempMax)
-    tempMax = 0
-print(topList)
+    for i in range(K):
+        for allResults in range(len(finalList)):
+            print(finalList[allResults])
+            if tempMax < finalList[allResults]:
+                tempMax = finalList[allResults]
+        finalList.remove(tempMax)
+        topList.append(tempMax)
+        tempMax = 0
+    print(topList)
 
-for i in range(len(topList)):
-    for j in range(len(resultChunks)):
-        for allNumbers in range(len(resultChunks[j])):
-            if topList[i] == resultChunks[j][2]:
-                print(i + 1, " The", round(topList[i] * 100, 2), "% similarity, come from document No:", resultChunks[j][0],
-                      "and Document No:", resultChunks[j][1])
-                break
+    for i in range(len(topList)):
+        for j in range(len(resultChunks)):
+            for allNumbers in range(len(resultChunks[j])):
+                if topList[i] == resultChunks[j][2]:
+                    print(i + 1, " The", round((topList[i] * 100), 2), "% similarity, come from document No:",
+                          resultChunks[j][0],
+                          "and Document No:", resultChunks[j][1])
+                    break
