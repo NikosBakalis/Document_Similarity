@@ -13,6 +13,8 @@ digitList = list()
 resultList = list()
 finalList = list()
 topList = list()
+printingList = list()
+endingList = list()
 part1 = 0
 part2 = 0
 part3 = 0
@@ -25,6 +27,7 @@ for x in range(N):
     listsOne[x] = document.split()
     while len(listsOne[x]) == 0:
         print("Document can't be empty")
+        print("Document No.", x + 1)
         document = input("Enter your document here:\n")
         listsOne[x] = document.split()
     print('Here is the document you entered:\n', *listsOne[x])
@@ -153,6 +156,21 @@ else:
             for allNumbers in range(len(resultChunks[j])):
                 if topList[i] == resultChunks[j][2]:
                     print(i + 1, " The", round((topList[i] * 100), 2), "% similarity, come from document No:",
-                          resultChunks[j][0],
-                          "and Document No:", resultChunks[j][1])
+                          resultChunks[j][0], "and Document No:", resultChunks[j][1])
+                    printingList.append(round((topList[i] * 100), 2))
+                    printingList.append(resultChunks[j][0])
+                    printingList.append(resultChunks[j][1])
                     break
+
+    print(printingList)
+    printingChunks = [printingList[x:x + 3] for x in range(0, len(printingList), 3)]
+    for allNumbers in range(len(printingChunks)):
+        print(printingChunks[allNumbers], sep="\n")
+        if printingChunks[allNumbers] not in endingList:
+            endingList.append(printingChunks[allNumbers])
+    print(endingList)
+
+    print("\n\n\n")
+    for i in range(len(endingList)):
+        print(i + 1, " The", endingList[i][0], "% similarity, come from document No:",
+              endingList[i][1], "and Document No:", endingList[i][2])
