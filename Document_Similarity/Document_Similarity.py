@@ -3,20 +3,30 @@ from itertools import chain
 import math
 
 N = int(input("Amount of documents: "))
+while N <= 1:
+    print("Documents must be two or more")
+    N = int(input("Amount of documents: "))
 listsOne = ["Null"] * N
 listTwo = list()
 dictToList = list()
 digitList = list()
 resultList = list()
+finalList = list()
+topList = list()
 part1 = 0
 part2 = 0
 part3 = 0
 cos = 0
+tempMax = 0
 
 for x in range(N):
     print("Document No.", x + 1)
     document = input("Enter your document here:\n")
     listsOne[x] = document.split()
+    while len(listsOne[x]) == 0:
+        print("Document can't be empty")
+        document = input("Enter your document here:\n")
+        listsOne[x] = document.split()
     print('Here is the document you entered:\n', *listsOne[x])
     print("\n")
 
@@ -99,13 +109,49 @@ for i in range(len(digitChunks)):
         resultList.append(i + 1)
         resultList.append(j + 1)
         resultList.append(cos)
+        finalList.append(cos)
         print(resultList)
+        print(finalList)
         part1 = 0
         part2 = 0
         part3 = 0
         cos = 0
         print("\n")
 
-resultChunks = [resultList[x:x+(int(len(resultList)/N))] for x in range(0, len(resultList), int(len(resultList)/N))]
-for allResults in range(len(resultChunks)):
-    print(resultChunks[allResults], sep="\n")
+if N == 2:
+    print("Final result:")
+    print(resultList)
+    print("The similarity between document No: 1 and document No: 2 is: ", finalList[0] * 100, "%")
+else:
+    print("Final result:")
+    resultChunks = [resultList[x:x+3] for x in range(0, len(resultList), 3)]
+    for allResults in range(len(resultChunks)):
+        print(resultChunks[allResults], sep="\n")
+
+    for allResults in range(len(resultChunks)):
+        for allNumbers in range(2, len(resultChunks[allResults]), 3):
+            print(resultChunks[allResults][allNumbers])
+            print("The similarity between document No:", resultChunks[allResults][0], "and document No:",
+                  resultChunks[allResults][1], "is:", round((resultChunks[allResults][2] * 100), 2), "%")
+
+K = int(input("Find the top similar documents: "))
+while K > math.factorial(N) / (math.factorial(2) * math.factorial(N - 2)):
+    K = int(input("Find the top similar documents: "))
+
+for i in range(K):
+    for allResults in range(len(finalList)):
+        print(finalList[allResults])
+        if tempMax < finalList[allResults]:
+            tempMax = finalList[allResults]
+    finalList.remove(tempMax)
+    topList.append(tempMax)
+    tempMax = 0
+print(topList)
+
+for i in range(len(topList)):
+    for j in range(len(resultChunks)):
+        for allNumbers in range(len(resultChunks[j])):
+            if topList[i] == resultChunks[j][2]:
+                print(i + 1, " The", round(topList[i] * 100, 2), "% similarity, come from document No:", resultChunks[j][0],
+                      "and Document No:", resultChunks[j][1])
+                break
