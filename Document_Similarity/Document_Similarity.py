@@ -137,8 +137,10 @@ else:
             print("The similarity between Document No:", resultChunks[allResults][0], "and Document No:",
                   resultChunks[allResults][1], "is:", round((resultChunks[allResults][2] * 100), 2), "%")
 
-    K = int(input("\n\nFind the top similar documents: "))
+    print("\n\nEnter a Number between 1 and", int(math.factorial(N) / (math.factorial(2) * math.factorial(N - 2))))
+    K = int(input("Find the top similar documents: "))
     while K > math.factorial(N) / (math.factorial(2) * math.factorial(N - 2)):
+        print("The number must be between 1 and", int(math.factorial(N) / (math.factorial(2) * math.factorial(N - 2))))
         K = int(input("Find the top similar documents: "))
 
     for i in range(K):
