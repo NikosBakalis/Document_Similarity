@@ -124,7 +124,7 @@ for i in range(len(digitChunks)):
 if N == 2:
     print("Final result:")
     print(resultList)
-    print("The similarity between Document No: 1 and Document No: 2 is: ", round((finalList[0] * 100), 2), "%")
+    print("The similarity between Document No: 1 and Document No: 2 is:`", round((finalList[0] * 100), 2), "%")
 else:
     print("Final result:")
     resultChunks = [resultList[x:x+3] for x in range(0, len(resultList), 3)]
@@ -171,6 +171,6 @@ else:
     print(endingList)
 
     print("\n\n\n")
-    for i in range(len(endingList)):
+    for i in range(K):
         print(i + 1, " The", endingList[i][0], "% similarity, come from document No:",
               endingList[i][1], "and Document No:", endingList[i][2])
