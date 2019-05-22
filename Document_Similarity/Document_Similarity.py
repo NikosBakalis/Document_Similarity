@@ -25,7 +25,8 @@ tempMax = 0
 for x in range(N):
     print("Document No.", x + 1)
     document = input("Enter your document here:\n")
-    document = re.sub(r'[^a-zA-Z0-9 ]', '', document)
+    document = re.sub(r'-', ' ', document)
+    document = re.sub('[^a-zA-Z0-9 ]', '', document)
     listsOne[x] = document.split()
     while len(listsOne[x]) == 0:
         print("Document can't be empty")
@@ -47,6 +48,7 @@ for y in range(len(chunks)):
         if word in countsAll:
             if word not in countsOne:
                 countsOne.update({word: 0})
+    print(countsAll)
     for key, value in countsOne.items():
         temp = [key, value]
         dictToList.append(temp)
