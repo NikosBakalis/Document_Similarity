@@ -48,7 +48,6 @@ for y in range(len(chunks)):
         if word in countsAll:
             if word not in countsOne:
                 countsOne.update({word: 0})
-    print(countsAll)
     for key, value in countsOne.items():
         temp = [key, value]
         dictToList.append(temp)
