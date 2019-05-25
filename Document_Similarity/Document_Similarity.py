@@ -33,15 +33,14 @@ for x in range(N):
         print("Document No.", x + 1)
         document = input("Enter your document here:\n")
         listsOne[x] = document.split()
-    print('Here is the document you entered:\n', *listsOne[x])
+    print("Document No.", x + 1, "added successfully")
     listsOne = [[word.lower() for word in line] for line in listsOne]
     print("\n")
 
-chunks = [listsOne[x:x+1] for x in range(0, len(listsOne), 1)]
 listTwo = list(chain.from_iterable(listsOne))
 countsAll = Counter(listTwo)
 
-for y in range(len(chunks)):
+for y in range(len(listsOne)):
     countsOne = Counter(listsOne[y])
     countsAll.subtract(countsOne)
     for word in list(countsAll):
