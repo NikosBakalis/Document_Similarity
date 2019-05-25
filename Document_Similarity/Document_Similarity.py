@@ -33,9 +33,8 @@ for x in range(N):
         print("Document No.", x + 1)
         document = input("Enter your document here:\n")
         listsOne[x] = document.split()
-    print("Document No.", x + 1, "added successfully")
+    print("Document No.", x + 1, "added successfully\n")
     listsOne = [[word.lower() for word in line] for line in listsOne]
-    print("\n")
 
 listTwo = list(chain.from_iterable(listsOne))
 countsAll = Counter(listTwo)
