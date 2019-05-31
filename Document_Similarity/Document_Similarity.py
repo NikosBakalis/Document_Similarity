@@ -7,6 +7,7 @@ N = int(input("Amount of documents: "))
 while N <= 1:
     print("Documents must be two or more")
     N = int(input("Amount of documents: "))
+
 listsOne = ["Null"] * N
 listTwo = list()
 dictToList = list()
