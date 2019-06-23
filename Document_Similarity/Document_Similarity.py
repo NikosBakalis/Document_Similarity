@@ -33,6 +33,8 @@ for x in range(N):
         print("Document can't be empty")
         print("Document No.", x + 1)
         document = input("Enter your document here:\n")
+        document = re.sub(r'-', ' ', document)
+        document = re.sub('[^a-zA-Z0-9 ]', '', document)
         listsOne[x] = document.split()
     print("Document No.", x + 1, "added successfully\n")
     listsOne = [[word.lower() for word in line] for line in listsOne]
